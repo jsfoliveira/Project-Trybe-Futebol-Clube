@@ -1,5 +1,6 @@
 import { STRING, INTEGER, Model } from 'sequelize';
 import db from '.';
+// eslint-disable-next-line import/no-cycle
 import Match from './match';
 // import OtherModel from './OtherModel';
 

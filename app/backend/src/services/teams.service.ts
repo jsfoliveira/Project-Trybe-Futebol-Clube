@@ -12,6 +12,11 @@ class TeamService {
     const result = await this.model.findAll();
     return result as ITeam[];
   }
+
+  public async getById(id: number) {
+    const result = await this.model.findOne({ where: { id } });
+    return result;
+  }
 }
 
 export default TeamService;

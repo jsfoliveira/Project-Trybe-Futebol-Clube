@@ -11,4 +11,10 @@ const getAll = async (req: Request, res: Response) => {
 
 teamRouter.get('/', getAll);
 
+const getById = async (req: Request, res: Response) => {
+  await teamController.getById(req, res);
+};
+
+teamRouter.get('/:id', getById);
+
 export default teamRouter;

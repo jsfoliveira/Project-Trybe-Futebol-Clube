@@ -1,4 +1,5 @@
 import * as express from 'express';
+import matchRouter from './router/matchRouter';
 import teamRouter from './router/teamRouter';
 import userRouter from './router/userRouter';
 
@@ -26,6 +27,7 @@ class App {
     this.app.use(accessControl);
     this.app.use('/login', userRouter);
     this.app.use('/teams', teamRouter);
+    this.app.use('/matches', matchRouter);
   }
 
   public start(PORT: string | number):void {

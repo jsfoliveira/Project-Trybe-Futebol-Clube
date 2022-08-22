@@ -1,5 +1,6 @@
 import { INTEGER, Model } from 'sequelize';
 import db from '.';
+import Team from './teams';
 // import OtherModel from './OtherModel';
 
 class Match extends Model {
@@ -10,6 +11,7 @@ class Match extends Model {
   declare awayTeamGoals: number;
   declare inProgress: number;
 }
+// onDelete e onUpdate faz com que ao excluir ou atualizar um registro em uma tabela, um registro relacionado em outra tabela é automaticamente excluído ou  atualizado na chave estrangeira.
 
 Match.init({
   id: {
@@ -20,12 +22,24 @@ Match.init({
   homeTeam: {
     type: INTEGER,
     allowNull: false,
-  },
-  homeTeamGoals: {
-    type: INTEGER,
-    allowNull: false,
+    references: {
+      model: 'teams',
+      key: 'id',
+    },
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
   },
   awayTeam: {
+    type: INTEGER,
+    allowNull: false,
+    references: {
+      model: 'teams',
+      key: 'id',
+    },
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  },
+  homeTeamGoals: {
     type: INTEGER,
     allowNull: false,
   },
@@ -41,7 +55,7 @@ Match.init({
   // ... Outras configs
   underscored: true,
   sequelize: db,
-  modelName: 'users',
+  modelName: 'matches',
   timestamps: false,
 });
 
@@ -50,16 +64,10 @@ Match.init({
   * Associations 1:N devem ficar em uma das instâncias de modelo
   * */
 
-// OtherModel.belongsTo(Example, { foreignKey: 'campoA', as: 'campoEstrangeiroA' });
-// OtherModel.belongsTo(Example, { foreignKey: 'campoB', as: 'campoEstrangeiroB' });
+Match.belongsTo(Team, { foreignKey: 'homeTeam', as: 'teamHome' });
+Match.belongsTo(Team, { foreignKey: 'awayTeam', as: 'teamAway' });
 
-// Example.hasMany(OtherModel, { foreignKey: 'campoC', as: 'campoEstrangeiroC' });
-// Example.hasMany(OtherModel, { foreignKey: 'campoD', as: 'campoEstrangeiroD' });
-// Match.belongsTo(Team, { foreignKey: 'homeTeam', as: 'teamHome' });
-// Match.belongsTo(Team, { foreignKey: 'awayTeam', as: 'teamAway' });
-// // OtherModel.belongsTo(Example, { foreignKey: 'campoB', as: 'campoEstrangeiroB' });
-
-// Team.hasMany(Match, { foreignKey: 'homeTeam', as: 'homeId' });
-// Team.hasMany(Match, { foreignKey: 'awayTeam', as: 'awayId' });
+Team.hasMany(Match, { foreignKey: 'homeTeam', as: 'homeId' });
+Team.hasMany(Match, { foreignKey: 'awayTeam', as: 'awayId' });
 
 export default Match;

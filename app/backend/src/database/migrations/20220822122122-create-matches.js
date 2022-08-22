@@ -2,7 +2,8 @@ module.exports = {
   // eslint-disable-next-line max-lines-per-function
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('matches', {
-      id: { type: Sequelize.INTEGER,
+      id: {
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },

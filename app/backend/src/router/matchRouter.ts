@@ -17,4 +17,10 @@ const create = async (req: Request, res: Response) => {
 
 matchRouter.post('/', create);
 
+const finished = async (req: Request, res: Response) => {
+  await matchController.update(req, res);
+};
+
+matchRouter.patch('/:id/finish', finished);
+
 export default matchRouter;

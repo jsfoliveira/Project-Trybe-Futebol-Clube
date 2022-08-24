@@ -23,6 +23,12 @@ class MatchService {
     const result = await this.model.create({ ...body, inProgress });
     return result;
   }
+
+  public update = async (id: number): Promise<void> => {
+    await this.model.update({
+      inProgress: false,
+    }, { where: { id } });
+  };
 }
 
 export default MatchService;

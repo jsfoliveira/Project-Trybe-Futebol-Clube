@@ -1,3 +1,4 @@
+import bodyParser = require('body-parser');
 import * as express from 'express';
 import matchRouter from './router/matchRouter';
 import teamRouter from './router/teamRouter';
@@ -22,6 +23,8 @@ class App {
       res.header('Access-Control-Allow-Headers', '*');
       next();
     };
+
+    this.app.use(bodyParser.json());
 
     this.app.use(express.json());
     this.app.use(accessControl);

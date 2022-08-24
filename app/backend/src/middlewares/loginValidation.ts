@@ -7,6 +7,7 @@ export default class LoginValidation {
   async (req: Request, res:Response, next: NextFunction): Promise<(Response | void)> => {
     // pegar os dados da interface do user, que já estão tipados
     const { email, password } = req.body as IUser;
+    console.log(req.body);
 
     // Se não informar o email e o password, deve retornar um status 400 e a mensagem
     if (!email) {

@@ -13,6 +13,11 @@ class MatchController {
     const result = await this.matchService.getAll();
     res.status(200).json(result);
   };
+
+  public create = async (req: Request, res: Response) => {
+    const result = await this.matchService.create(req.body);
+    res.status(201).json(result);
+  };
 }
 
 export default MatchController;

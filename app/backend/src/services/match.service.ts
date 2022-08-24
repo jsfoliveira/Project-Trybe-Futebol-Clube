@@ -1,6 +1,7 @@
 import Team from '../database/models/teams';
 import MatchModel from '../database/models/match';
 import IMatch from '../interfaces/match.interface';
+import IBodyMatch from '../interfaces/matchBody.interface';
 
 class MatchService {
   public model;
@@ -15,6 +16,12 @@ class MatchService {
       { model: Team, as: 'teamAway', attributes: { exclude: ['id'] } },
     ] });
     return result as unknown as IMatch[];
+  }
+
+  public async create(body: IBodyMatch) {
+    const inProgress = 1;
+    const result = await this.model.create({ ...body, inProgress });
+    return result;
   }
 }
 

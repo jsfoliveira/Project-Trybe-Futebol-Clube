@@ -11,4 +11,10 @@ const getAll = async (req: Request, res: Response) => {
 
 matchRouter.get('/', getAll);
 
+const create = async (req: Request, res: Response) => {
+  await matchController.create(req, res);
+};
+
+matchRouter.post('/', create);
+
 export default matchRouter;

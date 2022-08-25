@@ -13,16 +13,19 @@ class MatchController {
   };
 
   public create = async (req: Request, res: Response) => {
-    const result = await this.matchService.create(req.body);
-
     const { awayTeam, homeTeam } = req.body;
-    if (awayTeam === homeTeam) {
-      return res.status(401).json({
-        message: 'It is not possible to create a match with two equal teams',
-      });
+    try {
+      const result = await this.matchService.create(req.body);
+      if (awayTeam === homeTeam) {
+        return res.status(401).json({
+          message: 'It is not possible to create a match with two equal teams',
+        });
+      }
+      return res.status(201).json(result);
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({ error: err });
     }
-
-    return res.status(201).json(result);
   };
 
   public update = async (req: Request, res: Response) => {

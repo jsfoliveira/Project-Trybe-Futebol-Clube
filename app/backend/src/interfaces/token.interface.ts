@@ -1,3 +1,6 @@
 export default interface IToken {
-  token: string,
+  id: number;
+  username: string;
+  role: string;
+  email: string;
 }

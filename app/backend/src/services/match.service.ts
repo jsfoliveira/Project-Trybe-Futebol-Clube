@@ -29,6 +29,14 @@ class MatchService {
       inProgress: false,
     }, { where: { id } });
   };
+
+  public async updateIdMatch(id: number, homeTeamGoals: number, awayTeamGoals: number) {
+    const result = await this.model.update(
+      { homeTeamGoals, awayTeamGoals },
+      { where: { id } },
+    );
+    return result;
+  }
 }
 
 export default MatchService;

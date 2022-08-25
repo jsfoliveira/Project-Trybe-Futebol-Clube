@@ -24,4 +24,10 @@ const finished = async (req: Request, res: Response) => {
 
 matchRouter.patch('/:id/finish', finished);
 
+const updateIdMatch = async (req: Request, res: Response) => {
+  await matchController.updateIdMatch(req, res);
+};
+
+matchRouter.patch('/:id', updateIdMatch);
+
 export default matchRouter;

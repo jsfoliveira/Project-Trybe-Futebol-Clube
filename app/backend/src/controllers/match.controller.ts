@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import Team from '../database/models/teams';
 import MatchService from '../services/match.service';
 
 class MatchController {
@@ -14,20 +15,20 @@ class MatchController {
 
   public create = async (req: Request, res: Response) => {
     const { awayTeam, homeTeam } = req.body;
-    try {
-      const result = await this.matchService.create(req.body);
-
-      if (awayTeam === homeTeam) {
-        return res.status(401).json({
-          message: 'It is not possible to create a match with two equal teams',
-        });
-      }
-
-      return res.status(201).json(result);
-    } catch (err) {
-      console.log(err);
-      return res.status(500).json({ error: err });
+    if (awayTeam === homeTeam) {
+      return res.status(401).json({
+        message: 'It is not possible to create a match with two equal teams',
+      });
     }
+
+    const homeTeamId = await Team.findByPk(homeTeam);
+    const awayTeamId = await Team.findByPk(awayTeam);
+    if (!homeTeamId || !awayTeamId) {
+      return res.status(404).json({ message: 'There is no team with such id!' });
+    }
+
+    const result = await this.matchService.create(req.body);
+    return res.status(201).json(result);
   };
 
   public update = async (req: Request, res: Response) => {
@@ -43,7 +44,6 @@ class MatchController {
     const { homeTeamGoals, awayTeamGoals } = req.body;
 
     const result = await this.matchService.updateIdMatch(Number(id), homeTeamGoals, awayTeamGoals);
-
     return res.status(200).json(result);
   }
 }

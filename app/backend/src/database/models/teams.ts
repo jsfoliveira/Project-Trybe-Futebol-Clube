@@ -18,15 +18,10 @@ Team.init({
     allowNull: false,
   },
 }, {
-  // ... Outras configs
   underscored: true,
   sequelize: db,
   modelName: 'teams',
   timestamps: false,
 });
 
-/**
-  * `Workaround` para aplicar as associations em TS:
-  * Associations 1:N devem ficar em uma das instâncias de modelo
-  * */
 export default Team;

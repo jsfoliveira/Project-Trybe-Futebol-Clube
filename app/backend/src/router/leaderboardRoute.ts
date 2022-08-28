@@ -1,14 +1,10 @@
-import { Router, Request, Response } from 'express';
-import LeaderboardController from '../controllers/leaderboard.controller';
+import { Router } from 'express';
+import LeaderbordsController from '../controllers/leaderboard.controller';
 
-const leaderboardRouter = Router();
+const leaderboardController = new LeaderbordsController();
 
-const leaderboardController = new LeaderboardController();
+const leaderboardRoute = Router();
 
-const getAll = async (req: Request, res: Response) => {
-  await leaderboardController.getAll(req, res);
-};
+leaderboardRoute.get('/home', (req, res) => leaderboardController.getAll(req, res));
 
-leaderboardRouter.get('/home', getAll);
-
-export default leaderboardRouter;
+export default leaderboardRoute;

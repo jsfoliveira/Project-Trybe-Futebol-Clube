@@ -11,6 +11,8 @@ class MatchService {
   }
 
   public async getAll(): Promise<IMatch[]> {
+    // os team_name vão ser os teamHome e teamAway
+    // precisa excluir o id
     const result = await this.model.findAll({ include: [
       { model: Team, as: 'teamHome', attributes: { exclude: ['id'] } },
       { model: Team, as: 'teamAway', attributes: { exclude: ['id'] } },

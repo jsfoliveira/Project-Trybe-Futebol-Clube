@@ -1,8 +1,8 @@
 import { INTEGER, STRING, Model } from 'sequelize';
 import db from '.';
-// import OtherModel from './OtherModel';
 
 class Users extends Model {
+  // public <campo>!: <tipo>;
   declare id: number;
   declare username: string;
   declare role: string;
@@ -33,22 +33,14 @@ Users.init({
     allowNull: false,
   },
 }, {
-  // ... Outras configs
+  // underscoredAll: trueconverter automaticamente os nomes dos atributos do modelo camelCased para sublinhado(snake_case)
   underscored: true,
+  // configuração do sequelize
   sequelize: db,
+  // nome da tabela
   modelName: 'users',
+  // createdAt e updatedAt são criadas automaticamente
   timestamps: false,
 });
-
-/**
-  * `Workaround` para aplicar as associations em TS:
-  * Associations 1:N devem ficar em uma das instâncias de modelo
-  * */
-
-// OtherModel.belongsTo(Example, { foreignKey: 'campoA', as: 'campoEstrangeiroA' });
-// OtherModel.belongsTo(Example, { foreignKey: 'campoB', as: 'campoEstrangeiroB' });
-
-// Example.hasMany(OtherModel, { foreignKey: 'campoC', as: 'campoEstrangeiroC' });
-// Example.hasMany(OtherModel, { foreignKey: 'campoD', as: 'campoEstrangeiroD' });
 
 export default Users;

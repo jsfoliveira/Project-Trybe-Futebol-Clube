@@ -1,5 +1,7 @@
 import bodyParser = require('body-parser');
 import * as express from 'express';
+// import 'express-async-errors';
+// import errorHandler from './middlewares/errorHandler';
 import leaderboardRouter from './router/leaderboardRoute';
 import matchRouter from './router/matchRouter';
 import teamRouter from './router/teamRouter';
@@ -29,6 +31,7 @@ class App {
 
     this.app.use(express.json());
     this.app.use(accessControl);
+    // this.app.use(errorHandler);
     this.app.use('/login', userRouter);
     this.app.use('/teams', teamRouter);
     this.app.use('/matches', matchRouter);

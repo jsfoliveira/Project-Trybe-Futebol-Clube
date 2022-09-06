@@ -2,19 +2,20 @@ import TeamModel from '../database/models/teams';
 import ITeam from '../interfaces/team.interface';
 
 class TeamService {
-  public model;
-
+  teamModel;
   constructor() {
-    this.model = TeamModel;
+    this.teamModel = TeamModel;
   }
 
-  public async getAll(): Promise<ITeam[]> {
-    const result = await this.model.findAll();
+  // findMany também pode substituir o findAll
+  async getAll() {
+    const result = await this.teamModel.findAll();
     return result as ITeam[];
   }
 
-  public async getById(id: number) {
-    const result = await this.model.findOne({ where: { id } });
+  // findUnique também pode substituir o findOne
+  async getById(id: number) {
+    const result = await this.teamModel.findOne({ where: { id } });
     return result;
   }
 }

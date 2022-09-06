@@ -1,24 +1,23 @@
 import { Request, Response } from 'express';
-
 import TeamService from '../services/teams.service';
 
 class TeamController {
-  public teamService;
-
+  teamService;
   constructor() {
     this.teamService = new TeamService();
   }
 
-  public getAll = async (req: Request, res: Response) => {
+  getAll = async (req: Request, res: Response) => {
     const result = await this.teamService.getAll();
-    res.status(200).json(result);
+    return res.status(200).json(result);
   };
 
-  public async getById(req: Request, res: Response):Promise<Response> {
+  getById = async (req: Request, res: Response) => {
     const { id } = req.params;
+    // como usou o autoincrement, precisa converter pra number o id
     const result = await this.teamService.getById(Number(id));
     return res.status(200).json(result);
-  }
+  };
 }
 
 export default TeamController;

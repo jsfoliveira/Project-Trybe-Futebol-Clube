@@ -1,33 +1,18 @@
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
 import MatchController from '../controllers/match.controller';
-import Validation from '../middlewares/tokenValidation';
+import validation from '../middlewares/tokenValidation';
 
 const matchRouter = Router();
 
 const matchController = new MatchController();
 
-const getAll = async (req: Request, res: Response) => {
-  await matchController.getAll(req, res);
-};
+matchRouter.get('/', matchController.getAll);
 
-matchRouter.get('/', getAll);
+// o validation é para que não seja possível inserir uma partida sem um token válido
+matchRouter.post('/', validation, matchController.create);
 
-const create = async (req: Request, res: Response) => {
-  await matchController.create(req, res);
-};
+matchRouter.patch('/:id/finish', matchController.update);
 
-matchRouter.post('/', Validation, create);
-
-const finished = async (req: Request, res: Response) => {
-  await matchController.update(req, res);
-};
-
-matchRouter.patch('/:id/finish', finished);
-
-const updateIdMatch = async (req: Request, res: Response) => {
-  await matchController.updateIdMatch(req, res);
-};
-
-matchRouter.patch('/:id', updateIdMatch);
+matchRouter.patch('/:id', matchController.updateIdMatch);
 
 export default matchRouter;

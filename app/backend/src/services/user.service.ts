@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv';
 import * as bcryptjs from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 
-import User from '../database/models/users';
+import UserModel from '../database/models/users';
 
 dotenv.config();
 
@@ -10,23 +10,22 @@ dotenv.config();
 const secret = process.env.JWT_SECRET as string;
 
 export default class UserService {
-  public userModel;
+  userModel;
   constructor() {
     // o userModel recebe o que tem no User
-    this.userModel = User;
+    this.userModel = UserModel;
   }
 
-  public async login(email: string, password: string) {
+  login = async (email: string, password: string) => {
     // tipando o email e password
     // usuário coloca email e senha na paǵina
-    // conferindo se dentro do User encontra um email igual ao que foi colocado
+    // conferindo se dentro do User encontra um email igual ao que foi colocado(email = email)
     const confereEmail = await this.userModel.findOne({ where: { email } });
     // se for diferente, retorna erro e status
+    console.log(confereEmail);
+
     if (!confereEmail) {
-      return {
-        error: true,
-        status: 401,
-        message: 'Incorrect email or password' };
+      return { error: true };
     }
     // crypt.compare() compare se o password é igual ao password do email digitado
     const conferePassword = await bcryptjs.compare(password, confereEmail.password);
@@ -37,13 +36,19 @@ export default class UserService {
       };
     }
 
-    // depois de fazer toda essa verificação do email e password, o servidor irá autenticar e criará um token JWT com status Ok (200)
-    const token = jwt.sign({ data: { email, password } }, secret, { expiresIn: '1d',
+    // o objeto que vai estar preenchido
+    const payload = {
+      data: { email, password },
+    };
+    // o sign recebe 3 parâmetros: payload, secret e jwtOptions
+    const token = jwt.sign(payload, secret, { expiresIn: '1d',
       algorithm: 'HS256' });
-    return { status: 200, token };
-  }
 
-  public async verification(token: string): Promise<(string | void)> {
+    // depois de fazer toda essa verificação do email e password, o servidor irá autenticar e criará um token JWT
+    return { token };
+  };
+
+  verification = async (token: string) => {
     const myToken = jwt.verify(token, secret);
     const { data } = myToken as jwt.JwtPayload;
 
@@ -56,5 +61,5 @@ export default class UserService {
     if (confereEmail) {
       return confereEmail.role;
     }
-  }
+  };
 }

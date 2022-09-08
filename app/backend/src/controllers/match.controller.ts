@@ -5,6 +5,7 @@ import MatchService from '../services/match.service';
 class MatchController {
   matchService;
   constructor() {
+    // instancio o matchService
     this.matchService = new MatchService();
   }
 

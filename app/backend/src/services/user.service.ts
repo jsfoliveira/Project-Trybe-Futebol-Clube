@@ -32,8 +32,7 @@ export default class UserService {
 
     // se não estiver correto, vai retornar erro e status
     if (!conferePassword) {
-      return { error: true, status: 401, message: 'Incorrect email or password',
-      };
+      return { error: true };
     }
 
     // o objeto que vai estar preenchido
@@ -51,12 +50,19 @@ export default class UserService {
   verification = async (token: string) => {
     const myToken = jwt.verify(token, secret);
     const { data } = myToken as jwt.JwtPayload;
-
-    const confereEmail = await this.userModel.findOne({ where: { email: data.email } });
+    console.log(myToken);
+    // {
+    //   data: { email: 'admin@admin.com', password: 'secret_admin' },
+    //   iat: 1662743490,
+    //   exp: 1662829890
+    // }
 
     if (!myToken) {
       return 'invalid token';
     }
+
+    const confereEmail = await this.userModel.findOne({ where: { email: data.email } });
+    console.log(confereEmail);
 
     if (confereEmail) {
       return confereEmail.role;

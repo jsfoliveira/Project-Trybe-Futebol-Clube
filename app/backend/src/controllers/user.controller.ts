@@ -21,7 +21,11 @@ export default class UserController {
 
   verify = async (req: Request, res: Response) => {
     const token = req.headers.authorization as string;
+    console.log(token); // gera o token
+
     const result = await this.userService.verification(token);
+    console.log(result); // role
+
     if (result) {
       return res.status(200).json({ role: result });
     }

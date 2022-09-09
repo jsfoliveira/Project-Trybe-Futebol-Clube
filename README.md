@@ -1,300 +1,82 @@
-# Boas vindas ao repositório do Trybe Futebol Clube!
+# 	:woman_technologist: Project Trybe Futebol Clube
 
-Para realizar o projeto, atente-se a cada passo descrito a seguir, e se tiver qualquer dúvida, nos envie por _Slack_! #vqv 🚀
+Esse projeto contém uma série de informações sobre o que eu aprendi aqui na Trybe ao longo  do curso de desenvolvimento web da Trybe. <br>
+O `TFC` é um site informativo sobre partidas e classificações de futebol! ⚽️
 
-Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu projeto a partir deste repositório, utilizando uma branch específica e um _Pull Request_ para colocar seus códigos.
+No time de desenvolvimento do `TFC`, seu *squad* ficou responsável por desenvolver uma API (utilizando o método `TDD`) e também integrar *- através do docker-compose -* as aplicações para que elas funcionem consumindo um banco de dados.
 
-# Termos e acordos
+Nesse projeto, pude construir **um back-end dockerizado utilizando modelagem de dados através do Sequelize**. O desenvolvimento **respeita regras de negócio** providas no projeto e **sua API foi capaz de ser consumida por um front-end já provido nesse projeto**.
 
-Ao iniciar este projeto, você concorda com as diretrizes do Código de Conduta e do Manual da Pessoa Estudante da Trybe.
+Para adicionar uma partida é necessário ter um _token_, portanto a pessoa deverá estar logada para fazer as alterações. Teremos um relacionamento entre as tabelas `teams` e `matches` para fazer as atualizações das partidas.
 
-# Entregáveis
+O seu back-end implementou regras de negócio para popular adequadamente a tabela disponível no front-end que é exibida para a pessoa usuária do sistema.
 
-Aqui você terá acesso ao contexto geral do projeto, ou seja, seu tema central e o prazo de entrega.
-
-<details>
-  <summary><strong>🤷🏽‍♀️ Como entregar</strong></summary><br />
-
-  Para entregar o seu projeto você deverá criar um *Pull Request* neste repositório.
-
-  Lembre-se que você pode consultar nosso conteúdo sobre [Git & GitHub](https://app.betrybe.com/course/4d67f5b4-34a6-489f-a205-b6c7dc50fc16/) e nosso [Blog - Git & GitHub](https://blog.betrybe.com/tecnologia/git-e-github/) sempre que precisar!
-</details>
-
-<details>
-<summary><strong>👨‍💻 O que deverá ser desenvolvido</strong></summary><br />
-
-  ![Exemplo app front](assets/front-example.png)
-
-  O `TFC` é um site informativo sobre partidas e classificações de futebol! ⚽️
-
-  No time de desenvolvimento do `TFC`, seu *squad* ficou responsável por desenvolver uma API (utilizando o método `TDD`) e também integrar *- através do docker-compose -* as aplicações para que elas funcionem consumindo um banco de dados.
-
-  Nesse projeto, você vai construir **um back-end dockerizado utilizando modelagem de dados através do Sequelize**. Seu desenvolvimento deve **respeitar regras de negócio** providas no projeto e **sua API deve ser capaz de ser consumida por um front-end já provido nesse projeto**.
-
-  Para adicionar uma partida é necessário ter um _token_, portanto a pessoa deverá estar logada para fazer as alterações. Teremos um relacionamento entre as tabelas `teams` e `matches` para fazer as atualizações das partidas.
-
-  O seu back-end deverá implementar regras de negócio para popular adequadamente a tabela disponível no front-end que será exibida para a pessoa usuária do sistema.
-
-</details>
-
-<details>
-<summary><strong> Estrutura do projeto</strong></summary><br />
-
-O projeto é composto de 4 entidades importantes para sua estrutura:
-
-1️⃣ **Banco de dados:**
+## :rocket:Começando
+Esse projeto foi proposto pelo curso de desenvolvimento web da Trybe.
+### Desenvolvimento
+Esse projeto foi desenvolvido no bloco de back-end e foi possível treinar a linguagem TypeScript, através do MySQL, sendo usados os princípios SOLID e POO.
+### Commits
+Os commits foram feitos de acordo com os requisitos finalizados.
+### Branch
+Todo o projeto foi feita na branch 'juliana-oliveira-project-tfc', isso por conta da exigência do curso.
+### Instalação
+Precisa utilizar o comando $npm install, a fim de instalar as dependências do projeto.
+### Testes
+O teste acontece de cada desafio, através do comando $npm test.
+### Banco de dados
   - Será um container docker MySQL já configurado no docker-compose através de um serviço definido como `db`.
   - Tem o papel de fornecer dados para o serviço de _backend_.
   - Durante a execução dos testes sempre vai ser acessado pelo `sequelize` e via porta `3002` do `localhost`;
   - Você também pode conectar a um Cliente MySQL (Workbench, Beekeeper, DBeaver e etc), colocando as credenciais configuradas no docker-compose no serviço `db`.
 
-2️⃣ **Back-end:**
+### Back-end
  - Será o ambiente que você realizará a maior parte das implementações exigidas.
  - Deve rodar na porta `3001`, pois o front-end faz requisições para ele nessa porta por padrão;
  - Sua aplicação deve ser inicializada a partir do arquivo `app/backend/src/server.ts`;
  - Garanta que o `express` é executado e a aplicação ouve a porta que vem das variáveis de ambiente;
  - Todas as dependências extras (tal como `joi`, `boom`, `express-async-errors`...) devem ser listadas em `app/backend/packages.npm`.
 
-3️⃣ **Front-end:**
+### Front-end
   - O front já está concluído, não é necessário realizar modificações no mesmo. A única exceção será seu Dockerfile que precisará ser configurado.
   - Todos os testes a partir do requisito de login usam o `puppeteer` para simular uma pessoa acessando o site `http://localhost:3000/`;
   - O front se comunica com serviço de back-end pela url `http://localhost:3001` através dos endpoints que você deve construir nos requisitos.
   - Recomendamos que sempre que implementar um requisito no back-end acesse a página no front-end que consome a implementação para validar se está funcionando como esperado.
 
-4️⃣ **Docker:**
+### Docker
   - O `docker-compose` tem a responsabilidade de unir todos os serviços conteinerizados (backend, frontend e db) e subir o projeto completo com o comando `npm run compose:up` ou `npm run compose:up:dev`;
   - Você **deve** configurar as `Dockerfiles` corretamente nas raízes do `front-end` e `back-end`, para conseguir inicializar a aplicação;
-
-</details>
-
-<details>
-  <summary><strong> 🗓 Data de Entrega</strong></summary><br />
-
-  * Projeto individual;
-  * Serão `7` dias de projeto;
-  * Data de entrega regular do projeto: `01/09/2022 14:00`.
-
-</details>
-
-# Orientações
-
-## Antes de começar a desenvolver
-Leia essa parte atentamente, pois aqui você encontrará informações importantes para preparar corretamente o setup do projeto.
-
-<details>
-<summary><strong> 🔰 Iniciando o projeto</strong></summary><br />
-
-  1. Clone o repositório `Usar link SSH`
-
-- Entre na pasta do repositório que você acabou de clonar:
-  * `cd pasta-do-repositório`
-
-  2. Instale as dependências [**Caso existam**]
-  *`npm install`
-
-  3. Crie uma branch a partir da branch `main`
- - Verifique se você está na branch `main`
-  * Exemplo: `git branch`
-- Se não estiver, mude para a branch `main`
-  * Exemplo: `git checkout main`
-- Agora crie uma branch à qual você vai submeter os `commits` do seu projeto
-
-- Você deve criar uma branch no seguinte formato: `nome-de-usuario-nome-do-projeto`
-  * Exemplo: `git checkout -b maria-sd-019-a-trybe-futebol-clube`
-
-  4. Adicione as mudanças ao _stage_ do Git e faça um `commit`
-- Verifique que as mudanças ainda não estão no _stage_
-  * Exemplo: `git status` (deve aparecer listada a pasta _maria_ em vermelho)
-- Adicione o novo arquivo ao _stage_ do Git
-        * Exemplo:
-          * `git add .` (adicionando todas as mudanças - _que estavam em vermelho_ - ao stage do Git)
-          * `git status` (deve aparecer listado o arquivo _maria/README.md_ em verde)
-- Faça o `commit` inicial
-  * Exemplo:
-          * `git commit -m 'iniciando o projeto x'` (fazendo o primeiro commit)
-          * `git status` (deve aparecer uma mensagem tipo _nothing to commit_ )
-
-  5. Adicione a sua branch com o novo `commit` ao repositório remoto
-- Usando o exemplo anterior: `git push -u origin joaozinho-sd-019-a-trybe-futebol-clube`
-
-  6. Crie um novo `Pull Request` _(PR)_
-- Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-0x-project-[nome-do-projeto]/pulls)
-- Clique no botão verde _"New pull request"_
-- Clique na caixa de seleção _"Compare"_ e escolha a sua branch **com atenção**
-- Clique no botão verde _"Create pull request"_
-- Adicione uma descrição para o _Pull Request_ e clique no botão verde _"Create pull request"_
-- Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-0x-project-[nome-do-projeto]/pulls) e confira que o seu _Pull Request_ está criado
-
-</details>
-
-<details>
-<summary><strong>🕵️ Linter</strong></summary><br />
-
-Para garantir a qualidade do código, usaremos o [ESLint](https://eslint.org/) para fazer a sua análise estática.
-
-Este projeto já vem com as dependências relacionadas ao _linter_ configuradas nos arquivos `package.json` nos seguintes caminhos:
-
-- `sd-019-a-trybe-futebol-clube/app/backend/package.json`
-
-Para rodar o `ESLint` em um projeto, basta executar o comando `npm install` dentro do projeto e depois `npm run lint`. Se a análise do `ESLint` encontrar problemas no seu código, tais problemas serão mostrados no seu terminal. Se não houver problema no seu código, nada será impresso no seu terminal.
-
-Você também pode instalar o plugin do `ESLint` no `VSCode`: bastar ir em extensions e baixar o [plugin `ESLint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
-
-⚠️**Atenção:** Pull Requests com issues de linter não serão avaliadas. Atente-se para resolvê-las antes de finalizar o desenvolvimento.
-
-</details>
-
-
-
-<details>
-<summary><strong> ⚠️ Configurações mínimas para execução do projeto</strong></summary><br />
-
-Na sua máquina você deve ter:
-
+### Na sua máquina você deve ter
  - Sistema Operacional Distribuição Unix
  - Node versão 16
  - Docker
  - Docker-compose versão >=1.29.2
+### Variáveis de ambiente
 
-➡️ O `node` deve ter versão igual ou superior à `16.15.0 LTS`:
-  - Para instalar o nvm, [acesse esse link](https://github.com/nvm-sh/nvm#installing-and-updating);
-  - Rode os comandos abaixo para instalar a versão correta de `node` e usá-la:
-    - `nvm install 16 --lts`
-    - `nvm use 16`
-    - `nvm alias default 16`
-
-➡️ O`docker-compose` deve ter versão igual ou superior à`ˆ1.29.2`:
-  * Use esse [link de referência para realizar a instalação corretamente no ubuntu](https://app.betrybe.com/course/back-end/docker/orquestrando-containers-com-docker-compose/6e8afaef-566a-47f2-9246-d3700db7a56a/conteudo/0006a231-1a10-48a2-ac82-9e03e205a231/instalacao/abe40727-6310-4ad8-bde6-fd1e919dadc0?use_case=side_bar);
-  * Acesse o [link da documentação oficial com passos para desinstalar] (https://docs.docker.com/compose/install/#uninstallation) caso necessário.
-
-</details>
-
-<details>
-<summary><strong>🐳 Configuração Docker</strong></summary><br />
-
-  ### Docker e Docker-compose
-
-  ⚠ O seu docker-compose precisa estar na versão 1.29 ou superior.  ⚠
-[Veja aqui a documentação para atualizar o docker-compose.](https://docs.docker.com/compose/install/)
-
-⚠️ **Crie os arquivos dockerfile:**
-
-  - As pastas `frontend/` e `backend/` devem possuir um arquivo `Dockerfile` cada, configurados corretamente para a aplicação começar a rodar. Sem essa etapa concluída o _docker-compose_ não irá funcionar.
-
-⚠️ **Atenção:**
-
-- Seu projeto vai conter um arquivo `docker-compose.yml` que será utilizado pelo avaliador para realizar o _build_ da aplicação, você **não** deve alterá-lo ou excluí-lo.
-- O arquivo `docker-compose.yml` também pode ser utilizado para executar a aplicação na sua máquina local, para isso é necessário executar o comando `npm run compose:up` na raiz do projeto.
-- Recomendamos que enquanto desenvolve o projeto prefira o usar o comando `npm run compose:up:dev` pois, diferente do comando anterior, este comando está configurado para compartilhar volumes com o _docker_ e também utiliza o _script_ que realiza o _live-reload_ ao fazer modificações no _back-end_. Somente quando instalar uma nova depêndencia ou alterar algum arquivo na raiz do backend, você deverá realizar o re-build do seu compose, pois o volume está mapeando somente alterações dentro da pasta `src` Você pode verificar essas configurações explorando o arquivo `docker-compose.dev.yml` e comparar com `docker-compose.yml`
-
-
->  👀 **De olho na dica:**
-> Lembre-se, você pode revisitar os conteúdos sobre Docker:
-> - [Dockerfile](https://app.betrybe.com/course/back-end/docker/manipulacao-e-criacao-de-imagens-no-docker/e92d2393-3508-43ab-8a67-2b2516d25864) (Seção Dockerfile - Comandos Básicos)
-> - [docker-compose](https://app.betrybe.com/course/back-end/docker/orquestrando-containers-com-docker-compose/6e8afaef-566a-47f2-9246-d3700db7a56a) (Seção Compose File - Parte I)
-> - [Manipulação e Criação de Imagens no Docker](https://app.betrybe.com/course/back-end/docker/manipulacao-e-criacao-de-imagens-no-docker/e92d2393-3508-43ab-8a67-2b2516d25864)
-</details>
-
-<details>
-  <summary><strong>⚠️ Pré-requisitos para uma boa avaliação</strong></summary><br />
-
-
-
- ▶️ **Premissas gerais:**
-
-Considere que para TODOS OS REQUISITOS, EXCETO os de testes de cobertura:
- - Dentro do container `app_backend`, o avaliador irá verificar:
-    - **Que é possível rodar o `tsc` ("TypeScript Compiler") sem erros**, através do script `npm run build`, da própria aplicação back-end;
-      - **Que o `tsc` deve gerar um arquivo `./build/database/config/database.js`** dentro do container `app_backend`;
-      - Considere a leitura da seção `Bônus: Model com Sequelize` no conteúdo de *TypeScript*: `Tipagem Estática e Generics` [nesse link](https://app.betrybe.com/course/back-end/typescript/tipagem-estatica-e-generics/68eccf60-a982-4455-837d-da31e8726be5).
-    - **Que é possível restaurar e popular o banco de dados** utilizando o `sequelize-cli`, a partir do arquivo de configuração `./build/database/config/database.js`, utilizando o script `npm run db:reset`, da própria aplicação back-end.
-      - ⚠️ Note:
-        -  Os seeds já foram providos em `./app/backend/src/database/seeders`, **porém, precisam ser renomeados** *(remoção do underline (`_`), do final do arquivo)* para que possam ser reconhecidos pelo `sequelize-cli`, a medida que as respectivas `migrations` forem criadas;
-        - Existe uma `migration` com nome `./app/backend/src/database/migrations/99999999999999-create-z.js` responsável por indicar que o banco foi criado corretamente e está funcionando. **Não apague ou renomeie essa migration**;
-
-⚠️ Configurar o `Dockerfile`, do _front-end_ e _back-end_, **não** será suficientes para que a aplicação execute corretamente. Também será necessário criar as _migrations_ e descomentar o underscore (`_`) nas _seeders_, para que seu projeto seja executável via Docker.
-
-⚠️ **A partir do 3º requisito**, a aplicação de front-end deve estar **rodando em um container**, de forma que a mesma tentará consumir sua aplicação back-end (**que deve estar saudável**, considerando os pontos anteriores).
-
-⚠️ Para que esse projeto seja avaliado corretamente, **sua aplicação deve ter um funcionamento mínimo**. Isso porque o avaliador **vai executar um teste de usabilidade E2E** (End-to-end, ou Ponto a ponto).
-
-> Leia mais sobre esse tipo de teste [nesse link](https://app.betrybe.com/course/real-life-engineer/e2e_tests_puppeteer)*, acompanhado de validações adicionais *(Compilação do TypeScript e inicialização do Sequelize)* que podem ser acompanhados pelo uso do script `npm run test:debug`;
-
-</details>
-
-## Durante o desenvolvimento
-
-Aqui você encontrará orientações e dicas que ajudarão muito no desenvolvimento do projeto. Sempre que tiver dúvidas ou bugs aparecerem, dê uma olhada aqui. 👀
-
-<details>
-<summary><strong> ⌨️ Boas práticas </strong></summary><br/>
-
-* Versione seu projeto
-
-  * Faça `commits` das alterações que você fizer no código regularmente;
-
-  * Lembre-se de sempre após um (ou alguns) `commits` atualizar o repositório remoto.
-
-  * Os comandos que você utilizará com mais frequência são:
-    1. `git status` _(para verificar o que está em vermelho - fora do stage - e o que está em verde - no stage)_;
-    2. `git add` _(para adicionar arquivos ao stage do Git)_;
-    3. `git commit` _(para criar um commit com os arquivos que estão no stage do Git)_;
-    4. `git push -u nome-da-branch` _(para enviar o commit para o repositório remoto na primeira vez que fizer o `push` de uma nova branch)_;
-    5. `git push` _(para enviar o commit para o repositório remoto após o passo anterior)_.
-
-</details>
-
-<details>
-<summary><strong> ⚠️ Inicialização do compose e verificação dos logs das aplicações </strong></summary><br />
-
-- Considerando o uso do parâmetro `healthcheck` em cada container do seu `docker-compose.yml`, a inicialização dos containers deve aguardar o comando de status de saúde (o que valida se aquele container está operacional ou não):
-  - No container `db`, representado por um comando `ping` no banco de dados;
-  - No back-end, representado por um comando `lsof`, que vai procurar aplicações ativas na porta definida (por padrão, no caso `3001`);
-  - No front-end, representado por um comando `lsof`, que vai procurar aplicações ativas na porta definida (por padrão, no caso `3000`).
-
-- Caso os containers respeitem as premissas anteriores, os mesmos devem ser criados sem maiores problemas:
-
-![Criação dos containers concluída com sucesso!](assets/compose-status-01.png)
-
-- Em caso de algum problema (no back-end, por exemplo), você deve se deparar com alguma mensagem do tipo:
-
-![Erro no status de saúde do container do back-end](assets/compose-status-03.png)
-
-> ⚠️ Lembre-se, não cabe ao avaliador de usabilidade dizer qual é o problema específico na sua aplicação, **portanto, cabe aqui investigar o problema**, sempre considerando as premissas anteriores.
-- Nesse caso, a partir da pasta `./app` (onde está seu *docker-compose*), é possível rodar o comando `docker-compose logs` (Para ver todos os status) ou `docker-compose logs <nome-do-seu-serviço>` (Para mostrar somente o de um escopo específico).
-  - ⚠️ é indicado remover o parâmetro `restart: 'always'` do seu serviço, para que o mesmo não polua seus logs;
-  - No nosso contexto, rodando o comando `docker-compose logs backend`:
-
-![docker-compose logs backend](assets/compose-status-04.png)
-
-> Aqui não houve problema com o `tsc`, porém a senha para acesso ao banco pelo sequelize estava errada.
-
- #### ⚠️ **Inicie seu `docker-compose` antes de testar localmente!** ⚠️
-
-  Os testes vão utilizar a sua aplicação do compose para fazer as validações, portanto **é essencial que ela esteja funcionando corretamente** para que os testes passem!
-
-  - Para isso, garanta que as aplicações, tanto do back, quanto do front-end, possuem arquivos `Dockerfile` válidos;
-  - Utilize os scripts de apoio `npm run compose:up` / `npm run compose:down`, para facilitar a execução do seu *compose*.
-
-</details>
-
-<details id='Variaveis-de-ambiente'>
-<summary><strong> ⚙️ Variáveis de ambiente </strong></summary><br />
-
-  **No diretório `app/backend/` renomeie o arquivo `.env.example` para `.env` e configure os valores de acordo com o cenário do seu ambiente (credenciais de banco de dados, secrets desejadas e etc)**. Isso vai permitir que você inicialize a aplicação fora do _container_ e ela se conecte com seu banco local caso deseje.
- > `./app/backend/.env.example`
-  ```txt
-  JWT_SECRET=jwt_secret
-  APP_PORT=3001
-  DB_USER=seu_user
-  DB_PASS=sua_senha
-  DB_HOST=localhost
-  DB_PORT=3306
-  ```
+  **No diretório `app/backend/`,  contém o arquivo `.env`. Nele, você precisa alterar os valores de acordo com o cenário do seu ambiente (credenciais de banco de dados, secrets desejadas e etc)**. Isso vai permitir que você inicialize a aplicação fora do _container_ e ela se conecte com seu banco local caso deseje.
 
   **⚠️ Variáveis de ambiente além das especificadas acima não são suportadas, pois não são esperadas pelo avaliador do projeto. ⚠️**
 
   **⚠️ Não defina variável de ambiente para o nome do banco, o mesmo deve se manter com o nome `TRYBE_FUTEBOL_CLUBE`. ⚠️**
+### Autores
+Esse foi um projeto individual,que desenvolvido somente por Juliana Oliveira.
+### Ferramentas usadas
+Foi usado Visual Studio Code, além do Trello que auxiliou na organização das tarefas.
+### Framework usado
+Nenhum.
+
+A
+## :footprints:Requisitos
+### Metodologia usada
+No trabalho do desenvolvimento de software a gente sempre tem prazos, muitas vezes os prazos são apertados.<br>
+Por outro lado, eu não quero criar algo que não entendo perfeitamente, como também fazer códigos rápidos pode levar a erros que podem demorar muito pra corrigir.<br>
+Por isso, usei e sempre uso o método Baby Steps, que é uma estratégia de abordar o desafio passo à passo, defensivamente.<br>
+Baby steps é um termo em inglês que quer dizer passos de bebê. Refere-se a fazer as coisas, quaisquer que sejam, devagar, com calma, passo a passo.
+#### :footprints:Requisito 1 - Retorne a quantidade de documentos inseridos na coleção `produtos`
+# Boas vindas ao repositório do Trybe Futebol Clube!
+
+
+
+
 
 </details>
 
